@@ -299,5 +299,11 @@ La ubicación y tamaño de la casa son una de las más importantes, así como la
 
 ### 6. Todos los resultados deben ser reproducible por lo que debe fijar que los conjuntos de entrenamiento y prueba sean los mismos siempre que se ejecute el código.
 
+
+
 ### 7. Seleccione una de las variables y haga un modelo univariado de regresión lineal para predecir el precio de las casas. Analice el modelo 
+
+```{r}
+plot(datos$LotArea,datos$SalePrice)
+```
 
