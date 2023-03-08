@@ -1,0 +1,524 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={ModelosDeRegresionLineal},
+  pdfauthor={Cristopher Barrios, Carlos Daniel Estrada},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{ModelosDeRegresionLineal}
+\author{Cristopher Barrios, Carlos Daniel Estrada}
+\date{2023-03-06}
+
+\begin{document}
+\maketitle
+
+\hypertarget{libreruxedas}{%
+\subsection{librerías}\label{libreruxedas}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(tidyr)}
+
+\NormalTok{train }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"train.csv"}\NormalTok{)}
+
+\NormalTok{test }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"test.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{r-markdown}{%
+\subsection{R Markdown}\label{r-markdown}}
+
+This is an R Markdown document. Markdown is a simple formatting syntax
+for authoring HTML, PDF, and MS Word documents. For more details on
+using R Markdown see \url{http://rmarkdown.rstudio.com}.
+
+When you click the \textbf{Knit} button a document will be generated
+that includes both content as well as the output of any embedded R code
+chunks within the document. You can embed an R code chunk like this:
+
+\hypertarget{including-plots}{%
+\subsection{Including Plots}\label{including-plots}}
+
+You can also embed plots, for example:
+
+\includegraphics{ModelosDeRegresionLineal_files/figure-latex/pressure-1.pdf}
+
+Note that the \texttt{echo\ =\ FALSE} parameter was added to the code
+chunk to prevent printing of the R code that generated the plot.
+
+\hypertarget{analisis-exploratorio}{%
+\subsection{Analisis exploratorio}\label{analisis-exploratorio}}
+
+Exploración rápida de datos train
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(train)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        Id           MSSubClass      MSZoning          LotFrontage    
+##  Min.   :   1.0   Min.   : 20.0   Length:1460        Min.   : 21.00  
+##  1st Qu.: 365.8   1st Qu.: 20.0   Class :character   1st Qu.: 59.00  
+##  Median : 730.5   Median : 50.0   Mode  :character   Median : 69.00  
+##  Mean   : 730.5   Mean   : 56.9                      Mean   : 70.05  
+##  3rd Qu.:1095.2   3rd Qu.: 70.0                      3rd Qu.: 80.00  
+##  Max.   :1460.0   Max.   :190.0                      Max.   :313.00  
+##                                                      NA's   :259     
+##     LotArea          Street             Alley             LotShape        
+##  Min.   :  1300   Length:1460        Length:1460        Length:1460       
+##  1st Qu.:  7554   Class :character   Class :character   Class :character  
+##  Median :  9478   Mode  :character   Mode  :character   Mode  :character  
+##  Mean   : 10517                                                           
+##  3rd Qu.: 11602                                                           
+##  Max.   :215245                                                           
+##                                                                           
+##  LandContour         Utilities          LotConfig          LandSlope        
+##  Length:1460        Length:1460        Length:1460        Length:1460       
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##                                                                             
+##  Neighborhood        Condition1         Condition2          BldgType        
+##  Length:1460        Length:1460        Length:1460        Length:1460       
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##                                                                             
+##   HouseStyle         OverallQual      OverallCond      YearBuilt   
+##  Length:1460        Min.   : 1.000   Min.   :1.000   Min.   :1872  
+##  Class :character   1st Qu.: 5.000   1st Qu.:5.000   1st Qu.:1954  
+##  Mode  :character   Median : 6.000   Median :5.000   Median :1973  
+##                     Mean   : 6.099   Mean   :5.575   Mean   :1971  
+##                     3rd Qu.: 7.000   3rd Qu.:6.000   3rd Qu.:2000  
+##                     Max.   :10.000   Max.   :9.000   Max.   :2010  
+##                                                                    
+##   YearRemodAdd   RoofStyle           RoofMatl         Exterior1st       
+##  Min.   :1950   Length:1460        Length:1460        Length:1460       
+##  1st Qu.:1967   Class :character   Class :character   Class :character  
+##  Median :1994   Mode  :character   Mode  :character   Mode  :character  
+##  Mean   :1985                                                           
+##  3rd Qu.:2004                                                           
+##  Max.   :2010                                                           
+##                                                                         
+##  Exterior2nd         MasVnrType          MasVnrArea      ExterQual        
+##  Length:1460        Length:1460        Min.   :   0.0   Length:1460       
+##  Class :character   Class :character   1st Qu.:   0.0   Class :character  
+##  Mode  :character   Mode  :character   Median :   0.0   Mode  :character  
+##                                        Mean   : 103.7                     
+##                                        3rd Qu.: 166.0                     
+##                                        Max.   :1600.0                     
+##                                        NA's   :8                          
+##   ExterCond          Foundation          BsmtQual           BsmtCond        
+##  Length:1460        Length:1460        Length:1460        Length:1460       
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##                                                                             
+##  BsmtExposure       BsmtFinType1         BsmtFinSF1     BsmtFinType2      
+##  Length:1460        Length:1460        Min.   :   0.0   Length:1460       
+##  Class :character   Class :character   1st Qu.:   0.0   Class :character  
+##  Mode  :character   Mode  :character   Median : 383.5   Mode  :character  
+##                                        Mean   : 443.6                     
+##                                        3rd Qu.: 712.2                     
+##                                        Max.   :5644.0                     
+##                                                                           
+##    BsmtFinSF2        BsmtUnfSF       TotalBsmtSF       Heating         
+##  Min.   :   0.00   Min.   :   0.0   Min.   :   0.0   Length:1460       
+##  1st Qu.:   0.00   1st Qu.: 223.0   1st Qu.: 795.8   Class :character  
+##  Median :   0.00   Median : 477.5   Median : 991.5   Mode  :character  
+##  Mean   :  46.55   Mean   : 567.2   Mean   :1057.4                     
+##  3rd Qu.:   0.00   3rd Qu.: 808.0   3rd Qu.:1298.2                     
+##  Max.   :1474.00   Max.   :2336.0   Max.   :6110.0                     
+##                                                                        
+##   HeatingQC          CentralAir         Electrical          X1stFlrSF   
+##  Length:1460        Length:1460        Length:1460        Min.   : 334  
+##  Class :character   Class :character   Class :character   1st Qu.: 882  
+##  Mode  :character   Mode  :character   Mode  :character   Median :1087  
+##                                                           Mean   :1163  
+##                                                           3rd Qu.:1391  
+##                                                           Max.   :4692  
+##                                                                         
+##    X2ndFlrSF     LowQualFinSF       GrLivArea     BsmtFullBath   
+##  Min.   :   0   Min.   :  0.000   Min.   : 334   Min.   :0.0000  
+##  1st Qu.:   0   1st Qu.:  0.000   1st Qu.:1130   1st Qu.:0.0000  
+##  Median :   0   Median :  0.000   Median :1464   Median :0.0000  
+##  Mean   : 347   Mean   :  5.845   Mean   :1515   Mean   :0.4253  
+##  3rd Qu.: 728   3rd Qu.:  0.000   3rd Qu.:1777   3rd Qu.:1.0000  
+##  Max.   :2065   Max.   :572.000   Max.   :5642   Max.   :3.0000  
+##                                                                  
+##   BsmtHalfBath        FullBath        HalfBath       BedroomAbvGr  
+##  Min.   :0.00000   Min.   :0.000   Min.   :0.0000   Min.   :0.000  
+##  1st Qu.:0.00000   1st Qu.:1.000   1st Qu.:0.0000   1st Qu.:2.000  
+##  Median :0.00000   Median :2.000   Median :0.0000   Median :3.000  
+##  Mean   :0.05753   Mean   :1.565   Mean   :0.3829   Mean   :2.866  
+##  3rd Qu.:0.00000   3rd Qu.:2.000   3rd Qu.:1.0000   3rd Qu.:3.000  
+##  Max.   :2.00000   Max.   :3.000   Max.   :2.0000   Max.   :8.000  
+##                                                                    
+##   KitchenAbvGr   KitchenQual         TotRmsAbvGrd     Functional       
+##  Min.   :0.000   Length:1460        Min.   : 2.000   Length:1460       
+##  1st Qu.:1.000   Class :character   1st Qu.: 5.000   Class :character  
+##  Median :1.000   Mode  :character   Median : 6.000   Mode  :character  
+##  Mean   :1.047                      Mean   : 6.518                     
+##  3rd Qu.:1.000                      3rd Qu.: 7.000                     
+##  Max.   :3.000                      Max.   :14.000                     
+##                                                                        
+##    Fireplaces    FireplaceQu         GarageType         GarageYrBlt  
+##  Min.   :0.000   Length:1460        Length:1460        Min.   :1900  
+##  1st Qu.:0.000   Class :character   Class :character   1st Qu.:1961  
+##  Median :1.000   Mode  :character   Mode  :character   Median :1980  
+##  Mean   :0.613                                         Mean   :1979  
+##  3rd Qu.:1.000                                         3rd Qu.:2002  
+##  Max.   :3.000                                         Max.   :2010  
+##                                                        NA's   :81    
+##  GarageFinish         GarageCars      GarageArea      GarageQual       
+##  Length:1460        Min.   :0.000   Min.   :   0.0   Length:1460       
+##  Class :character   1st Qu.:1.000   1st Qu.: 334.5   Class :character  
+##  Mode  :character   Median :2.000   Median : 480.0   Mode  :character  
+##                     Mean   :1.767   Mean   : 473.0                     
+##                     3rd Qu.:2.000   3rd Qu.: 576.0                     
+##                     Max.   :4.000   Max.   :1418.0                     
+##                                                                        
+##   GarageCond         PavedDrive          WoodDeckSF      OpenPorchSF    
+##  Length:1460        Length:1460        Min.   :  0.00   Min.   :  0.00  
+##  Class :character   Class :character   1st Qu.:  0.00   1st Qu.:  0.00  
+##  Mode  :character   Mode  :character   Median :  0.00   Median : 25.00  
+##                                        Mean   : 94.24   Mean   : 46.66  
+##                                        3rd Qu.:168.00   3rd Qu.: 68.00  
+##                                        Max.   :857.00   Max.   :547.00  
+##                                                                         
+##  EnclosedPorch      X3SsnPorch      ScreenPorch        PoolArea      
+##  Min.   :  0.00   Min.   :  0.00   Min.   :  0.00   Min.   :  0.000  
+##  1st Qu.:  0.00   1st Qu.:  0.00   1st Qu.:  0.00   1st Qu.:  0.000  
+##  Median :  0.00   Median :  0.00   Median :  0.00   Median :  0.000  
+##  Mean   : 21.95   Mean   :  3.41   Mean   : 15.06   Mean   :  2.759  
+##  3rd Qu.:  0.00   3rd Qu.:  0.00   3rd Qu.:  0.00   3rd Qu.:  0.000  
+##  Max.   :552.00   Max.   :508.00   Max.   :480.00   Max.   :738.000  
+##                                                                      
+##     PoolQC             Fence           MiscFeature           MiscVal        
+##  Length:1460        Length:1460        Length:1460        Min.   :    0.00  
+##  Class :character   Class :character   Class :character   1st Qu.:    0.00  
+##  Mode  :character   Mode  :character   Mode  :character   Median :    0.00  
+##                                                           Mean   :   43.49  
+##                                                           3rd Qu.:    0.00  
+##                                                           Max.   :15500.00  
+##                                                                             
+##      MoSold           YrSold       SaleType         SaleCondition     
+##  Min.   : 1.000   Min.   :2006   Length:1460        Length:1460       
+##  1st Qu.: 5.000   1st Qu.:2007   Class :character   Class :character  
+##  Median : 6.000   Median :2008   Mode  :character   Mode  :character  
+##  Mean   : 6.322   Mean   :2008                                        
+##  3rd Qu.: 8.000   3rd Qu.:2009                                        
+##  Max.   :12.000   Max.   :2010                                        
+##                                                                       
+##    SalePrice     
+##  Min.   : 34900  
+##  1st Qu.:129975  
+##  Median :163000  
+##  Mean   :180921  
+##  3rd Qu.:214000  
+##  Max.   :755000  
+## 
+\end{verbatim}
+
+test
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(test)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        Id         MSSubClass       MSZoning          LotFrontage    
+##  Min.   :1461   Min.   : 20.00   Length:1459        Min.   : 21.00  
+##  1st Qu.:1826   1st Qu.: 20.00   Class :character   1st Qu.: 58.00  
+##  Median :2190   Median : 50.00   Mode  :character   Median : 67.00  
+##  Mean   :2190   Mean   : 57.38                      Mean   : 68.58  
+##  3rd Qu.:2554   3rd Qu.: 70.00                      3rd Qu.: 80.00  
+##  Max.   :2919   Max.   :190.00                      Max.   :200.00  
+##                                                     NA's   :227     
+##     LotArea         Street             Alley             LotShape        
+##  Min.   : 1470   Length:1459        Length:1459        Length:1459       
+##  1st Qu.: 7391   Class :character   Class :character   Class :character  
+##  Median : 9399   Mode  :character   Mode  :character   Mode  :character  
+##  Mean   : 9819                                                           
+##  3rd Qu.:11518                                                           
+##  Max.   :56600                                                           
+##                                                                          
+##  LandContour         Utilities          LotConfig          LandSlope        
+##  Length:1459        Length:1459        Length:1459        Length:1459       
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##                                                                             
+##  Neighborhood        Condition1         Condition2          BldgType        
+##  Length:1459        Length:1459        Length:1459        Length:1459       
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##                                                                             
+##   HouseStyle         OverallQual      OverallCond      YearBuilt   
+##  Length:1459        Min.   : 1.000   Min.   :1.000   Min.   :1879  
+##  Class :character   1st Qu.: 5.000   1st Qu.:5.000   1st Qu.:1953  
+##  Mode  :character   Median : 6.000   Median :5.000   Median :1973  
+##                     Mean   : 6.079   Mean   :5.554   Mean   :1971  
+##                     3rd Qu.: 7.000   3rd Qu.:6.000   3rd Qu.:2001  
+##                     Max.   :10.000   Max.   :9.000   Max.   :2010  
+##                                                                    
+##   YearRemodAdd   RoofStyle           RoofMatl         Exterior1st       
+##  Min.   :1950   Length:1459        Length:1459        Length:1459       
+##  1st Qu.:1963   Class :character   Class :character   Class :character  
+##  Median :1992   Mode  :character   Mode  :character   Mode  :character  
+##  Mean   :1984                                                           
+##  3rd Qu.:2004                                                           
+##  Max.   :2010                                                           
+##                                                                         
+##  Exterior2nd         MasVnrType          MasVnrArea      ExterQual        
+##  Length:1459        Length:1459        Min.   :   0.0   Length:1459       
+##  Class :character   Class :character   1st Qu.:   0.0   Class :character  
+##  Mode  :character   Mode  :character   Median :   0.0   Mode  :character  
+##                                        Mean   : 100.7                     
+##                                        3rd Qu.: 164.0                     
+##                                        Max.   :1290.0                     
+##                                        NA's   :15                         
+##   ExterCond          Foundation          BsmtQual           BsmtCond        
+##  Length:1459        Length:1459        Length:1459        Length:1459       
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##                                                                             
+##  BsmtExposure       BsmtFinType1         BsmtFinSF1     BsmtFinType2      
+##  Length:1459        Length:1459        Min.   :   0.0   Length:1459       
+##  Class :character   Class :character   1st Qu.:   0.0   Class :character  
+##  Mode  :character   Mode  :character   Median : 350.5   Mode  :character  
+##                                        Mean   : 439.2                     
+##                                        3rd Qu.: 753.5                     
+##                                        Max.   :4010.0                     
+##                                        NA's   :1                          
+##    BsmtFinSF2        BsmtUnfSF       TotalBsmtSF     Heating         
+##  Min.   :   0.00   Min.   :   0.0   Min.   :   0   Length:1459       
+##  1st Qu.:   0.00   1st Qu.: 219.2   1st Qu.: 784   Class :character  
+##  Median :   0.00   Median : 460.0   Median : 988   Mode  :character  
+##  Mean   :  52.62   Mean   : 554.3   Mean   :1046                     
+##  3rd Qu.:   0.00   3rd Qu.: 797.8   3rd Qu.:1305                     
+##  Max.   :1526.00   Max.   :2140.0   Max.   :5095                     
+##  NA's   :1         NA's   :1        NA's   :1                        
+##   HeatingQC          CentralAir         Electrical          X1stFlrSF     
+##  Length:1459        Length:1459        Length:1459        Min.   : 407.0  
+##  Class :character   Class :character   Class :character   1st Qu.: 873.5  
+##  Mode  :character   Mode  :character   Mode  :character   Median :1079.0  
+##                                                           Mean   :1156.5  
+##                                                           3rd Qu.:1382.5  
+##                                                           Max.   :5095.0  
+##                                                                           
+##    X2ndFlrSF     LowQualFinSF        GrLivArea     BsmtFullBath   
+##  Min.   :   0   Min.   :   0.000   Min.   : 407   Min.   :0.0000  
+##  1st Qu.:   0   1st Qu.:   0.000   1st Qu.:1118   1st Qu.:0.0000  
+##  Median :   0   Median :   0.000   Median :1432   Median :0.0000  
+##  Mean   : 326   Mean   :   3.543   Mean   :1486   Mean   :0.4345  
+##  3rd Qu.: 676   3rd Qu.:   0.000   3rd Qu.:1721   3rd Qu.:1.0000  
+##  Max.   :1862   Max.   :1064.000   Max.   :5095   Max.   :3.0000  
+##                                                   NA's   :2       
+##   BsmtHalfBath       FullBath        HalfBath       BedroomAbvGr  
+##  Min.   :0.0000   Min.   :0.000   Min.   :0.0000   Min.   :0.000  
+##  1st Qu.:0.0000   1st Qu.:1.000   1st Qu.:0.0000   1st Qu.:2.000  
+##  Median :0.0000   Median :2.000   Median :0.0000   Median :3.000  
+##  Mean   :0.0652   Mean   :1.571   Mean   :0.3777   Mean   :2.854  
+##  3rd Qu.:0.0000   3rd Qu.:2.000   3rd Qu.:1.0000   3rd Qu.:3.000  
+##  Max.   :2.0000   Max.   :4.000   Max.   :2.0000   Max.   :6.000  
+##  NA's   :2                                                        
+##   KitchenAbvGr   KitchenQual         TotRmsAbvGrd     Functional       
+##  Min.   :0.000   Length:1459        Min.   : 3.000   Length:1459       
+##  1st Qu.:1.000   Class :character   1st Qu.: 5.000   Class :character  
+##  Median :1.000   Mode  :character   Median : 6.000   Mode  :character  
+##  Mean   :1.042                      Mean   : 6.385                     
+##  3rd Qu.:1.000                      3rd Qu.: 7.000                     
+##  Max.   :2.000                      Max.   :15.000                     
+##                                                                        
+##    Fireplaces     FireplaceQu         GarageType         GarageYrBlt  
+##  Min.   :0.0000   Length:1459        Length:1459        Min.   :1895  
+##  1st Qu.:0.0000   Class :character   Class :character   1st Qu.:1959  
+##  Median :0.0000   Mode  :character   Mode  :character   Median :1979  
+##  Mean   :0.5812                                         Mean   :1978  
+##  3rd Qu.:1.0000                                         3rd Qu.:2002  
+##  Max.   :4.0000                                         Max.   :2207  
+##                                                         NA's   :78    
+##  GarageFinish         GarageCars      GarageArea      GarageQual       
+##  Length:1459        Min.   :0.000   Min.   :   0.0   Length:1459       
+##  Class :character   1st Qu.:1.000   1st Qu.: 318.0   Class :character  
+##  Mode  :character   Median :2.000   Median : 480.0   Mode  :character  
+##                     Mean   :1.766   Mean   : 472.8                     
+##                     3rd Qu.:2.000   3rd Qu.: 576.0                     
+##                     Max.   :5.000   Max.   :1488.0                     
+##                     NA's   :1       NA's   :1                          
+##   GarageCond         PavedDrive          WoodDeckSF       OpenPorchSF    
+##  Length:1459        Length:1459        Min.   :   0.00   Min.   :  0.00  
+##  Class :character   Class :character   1st Qu.:   0.00   1st Qu.:  0.00  
+##  Mode  :character   Mode  :character   Median :   0.00   Median : 28.00  
+##                                        Mean   :  93.17   Mean   : 48.31  
+##                                        3rd Qu.: 168.00   3rd Qu.: 72.00  
+##                                        Max.   :1424.00   Max.   :742.00  
+##                                                                          
+##  EnclosedPorch       X3SsnPorch       ScreenPorch        PoolArea      
+##  Min.   :   0.00   Min.   :  0.000   Min.   :  0.00   Min.   :  0.000  
+##  1st Qu.:   0.00   1st Qu.:  0.000   1st Qu.:  0.00   1st Qu.:  0.000  
+##  Median :   0.00   Median :  0.000   Median :  0.00   Median :  0.000  
+##  Mean   :  24.24   Mean   :  1.794   Mean   : 17.06   Mean   :  1.744  
+##  3rd Qu.:   0.00   3rd Qu.:  0.000   3rd Qu.:  0.00   3rd Qu.:  0.000  
+##  Max.   :1012.00   Max.   :360.000   Max.   :576.00   Max.   :800.000  
+##                                                                        
+##     PoolQC             Fence           MiscFeature           MiscVal        
+##  Length:1459        Length:1459        Length:1459        Min.   :    0.00  
+##  Class :character   Class :character   Class :character   1st Qu.:    0.00  
+##  Mode  :character   Mode  :character   Mode  :character   Median :    0.00  
+##                                                           Mean   :   58.17  
+##                                                           3rd Qu.:    0.00  
+##                                                           Max.   :17000.00  
+##                                                                             
+##      MoSold           YrSold       SaleType         SaleCondition     
+##  Min.   : 1.000   Min.   :2006   Length:1459        Length:1459       
+##  1st Qu.: 4.000   1st Qu.:2007   Class :character   Class :character  
+##  Median : 6.000   Median :2008   Mode  :character   Mode  :character  
+##  Mean   : 6.104   Mean   :2008                                        
+##  3rd Qu.: 8.000   3rd Qu.:2009                                        
+##  Max.   :12.000   Max.   :2010                                        
+## 
+\end{verbatim}
+
+\end{document}
