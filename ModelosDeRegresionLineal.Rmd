@@ -103,7 +103,7 @@ La mayoría de las casas fueron construidas en los años 2000
 Casas mas nuevas: 
 ```{r}
 newhouses <- head(order(datos$YearBuilt, decreasing = T), n=10)
-datos[newhouses,c("Id","YearBuilt")]
+datos[newhouses,c("Id","YearBuilt","SalePrice")]
 ```
 
 
@@ -117,7 +117,7 @@ La mayoría de las casas no han sido remodeladas desde la decada de los 50s
 Casas recientementes remodeladas: 
 ```{r}
 newhouses <- head(order(datos$YearRemodAdd, decreasing = T), n=10)
-datos[newhouses,c("Id","YearRemodAdd")]
+datos[newhouses,c("Id","YearRemodAdd", "SalePrice")]
 ```
 
 
@@ -130,7 +130,7 @@ barplot(table(totalGenres))
 La mayoría de las casast tienen solo 6 habitaciones 
 ```{r}
 newhouses <- head(order(datos$TotRmsAbvGrd, decreasing = T), n=10)
-datos[newhouses,c("Id","TotRmsAbvGrd")]
+datos[newhouses,c("Id","TotRmsAbvGrd","SalePrice")]
 ```
 
 cantidad de baños 
