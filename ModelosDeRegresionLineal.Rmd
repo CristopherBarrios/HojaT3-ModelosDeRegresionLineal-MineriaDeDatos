@@ -285,6 +285,19 @@ set_prueba <- set_prueba[, !(names(set_prueba) %in% drop)]
 
 ### 5. Haga ingeniería de características, ¿qué variables cree que puedan ser mejores predictores para el precio de las casas? Explique en que basó la selección o no de las variables.
 
+LotArea: Tamaño del terreno de la casa
+Neighborhood: Vecindario donde esta ubicada la casa
+BldgType: Tipo/estilo de casa
+OverallQual: Material de la casa
+FullBath: Cantidad de baños
+TotRmsAbvGrd: Cantidad de habitaciones
+Fireplaces: Si tiene chimenea
+GarageCars: tamaño del parqueo en capacidad de autos
+
+Nos basamos en las caracterísicas mas distintivas de las casas, y las que considera el mercado actual para darle valor a un inmueble
+La ubicación y tamaño de la casa son una de las más importantes, así como la cantidad de habitacions y parqueos que tiene. Loas materiales de construcción nos permite deducir cuanto dinero se invirtó durante su construcción y el hecho de tener chimenea hace que aumenta el valor de un inmueble considerablemente
+
 ### 6. Todos los resultados deben ser reproducible por lo que debe fijar que los conjuntos de entrenamiento y prueba sean los mismos siempre que se ejecute el código.
 
 ### 7. Seleccione una de las variables y haga un modelo univariado de regresión lineal para predecir el precio de las casas. Analice el modelo 
+
