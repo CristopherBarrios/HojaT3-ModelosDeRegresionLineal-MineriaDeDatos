@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(haven)
 library(rpart)
 library(stats)
+library(caret)
 library(dplyr)
 library(cluster)
 library(rpart.plot)
@@ -22,6 +23,7 @@ library(fpc)
 library(ggplot2)
 library(tidyverse)
 library(e1071)
+library(corrplot)
 
 #train <- read.csv("train.csv")
 #test <- read.csv("test.csv")
@@ -307,9 +309,33 @@ La ubicación y tamaño de la casa son una de las más importantes, así como la
 plot(datos$LotArea,datos$SalePrice)
 ```
 
-### 8. Haga un modelo de regresión lineal con todaslas variables numéricas para predecir el precio de las casas. Analice el modelo (resumen, residuos, resultados de la predicción). Muestre el modelo gráficamente.
+### 8. Haga un modelo de regresión lineal con todas las variables numéricas para predecir el precio de las casas. Analice el modelo (resumen, residuos, resultados de la predicción). Muestre el modelo gráficamente.
+```{r}
+porciento <- 70/100
+datos$clasificacion <- ifelse(datos$SalePrice <= 251000, "Economicas", ifelse(datos$SalePrice <= 538000, "Intermedias", ifelse(datos$SalePrice <= 755000, "Caras")))
+datos$y <- as.numeric(factor(datos$clasificacion))
+datosCC <- datos[,c(2,4,18,19,20,21,27,35,37,38,39,44,45,46,47,48,49,50,51,52,53,55,57,60,62,63,67,68,69,70,71,72,76,77,78,81,83)]
+datosCC <- datosCC[,colSums(is.na(datosCC))==0]
+set.seed(123)
+trainRowsNumber<-sample(nrow(datosCC),porciento*nrow(datosCC))
+train<-datosCC[trainRowsNumber,]
+test<-datosCC[-trainRowsNumber,]
+
+fitLM<-lm(SalePrice~., data = train) 
+summary(fitLM)
+
+```
+
+```{r}
+plot(fitLM)
+```
 
 ### 9. Analice el modelo. Determine si hay multicolinealidad entre las variables, y cuáles son las que aportan al modelo, por su valor de significación. Haga un análisis de correlación de las características del modelo y especifique si el modelo se adapta bien a los datos. Explique si hay sobreajuste (overfitting) o no. En caso de existir sobreajuste, haga otro modelo que lo corrija.
+
+```{r}
+corrplot(cor(datosCC), method = "circle")
+```
+En general, hay poca correlación lineal entre las variables, aunque en algunas situaciones específicas se observan valores altos. Por lo tanto, se puede afirmar que el modelo se ajusta bien a los datos y algunas variables están altamente correlacionadas entre sí. Debido a la gran cantidad de correlaciones obtenidas en el análisis, se puede concluir que el modelo no está sobreajustado (overfitting).
 
 ### 10. Si tiene multicolinealidad o sobreajuste, haga un modelo con las variables que sean mejores predictoras del precio de las casas. Determine la calidad del modelo realizando un análisis de los residuos. Muéstrelo gráficamente.
 
