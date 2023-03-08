@@ -21,6 +21,7 @@ library(rpart.plot)
 library(fpc)
 library(ggplot2)
 library(tidyverse)
+library(e1071)
 
 #train <- read.csv("train.csv")
 #test <- read.csv("test.csv")
@@ -50,11 +51,11 @@ Analisis exploratorio
 ---Exploración rápida de datos---
 train
 ```{r}
-#summary(train)
+summary(datos)
 ```
 test
 ```{r}
-#summary(test)
+summary(test)
 
 ```
 
@@ -75,6 +76,89 @@ DataFrame.NombreDeLaVariables <- data.frame(NombreDeLaVariables, Cualitativa,Cua
 print(DataFrame.NombreDeLaVariables)
 
 ```
+
+Estilo de vivienda
+
+```{r}
+totalGenres <- unlist(strsplit(as.character(datos$BldgType), "\\|"))
+barplot(table(totalGenres))
+```
+La mayorías de las casas son para una familia
+
+```{r}
+totalGenres <- unlist(strsplit(as.character(datos$HouseStyle), "\\|"))
+barplot(table(totalGenres))
+```
+El estilo más común de casa es de 1 solo nivel, por lo que podemos deducir que las casas de 2 niveles son más cotizadas
+
+
+Año de construcción 
+
+```{r}
+totalGenres <- unlist(strsplit(as.character(datos$YearBuilt), "\\|"))
+barplot(table(totalGenres))
+```
+La mayoría de las casas fueron construidas en los años 2000
+
+Casas mas nuevas: 
+```{r}
+newhouses <- head(order(datos$YearBuilt, decreasing = T), n=10)
+datos[newhouses,c("Id","YearBuilt")]
+```
+
+
+Año de remodelación
+```{r}
+totalGenres <- unlist(strsplit(as.character(datos$YearRemodAdd), "\\|"))
+barplot(table(totalGenres))
+```
+La mayoría de las casas no han sido remodeladas desde la decada de los 50s
+
+Casas recientementes remodeladas: 
+```{r}
+newhouses <- head(order(datos$YearRemodAdd, decreasing = T), n=10)
+datos[newhouses,c("Id","YearRemodAdd")]
+```
+
+
+Cantidad de habitaciones 
+
+```{r}
+totalGenres <- unlist(strsplit(as.character(datos$TotRmsAbvGrd), "\\|"))
+barplot(table(totalGenres))
+```
+La mayoría de las casast tienen solo 6 habitaciones 
+```{r}
+newhouses <- head(order(datos$TotRmsAbvGrd, decreasing = T), n=10)
+datos[newhouses,c("Id","TotRmsAbvGrd")]
+```
+
+cantidad de baños 
+
+```{r}
+totalGenres <- unlist(strsplit(as.character(datos$FullBath), "\\|"))
+barplot(table(totalGenres))
+```
+Las casas familiares tienen entre 1 y 2 baños 
+
+
+cantidad de cocinas 
+
+```{r}
+totalGenres <- unlist(strsplit(as.character(datos$KitchenAbvGr), "\\|"))
+barplot(table(totalGenres))
+```
+LAs casas por lo general tienen solo una cocina
+
+capacidad de garages
+
+```{r}
+totalGenres <- unlist(strsplit(as.character(datos$GarageCars), "\\|"))
+barplot(table(totalGenres))
+```
+
+La mayoría de las casas estan adecuadas para estacionar 2 autos 
+
 
 
 ### 3. Incluya un análisis de grupos en el análisis exploratorio. Explique las características de los grupos.
@@ -131,7 +215,6 @@ cor(house$GrLivArea, house$SalePrice, method = c("pearson", "kendall", "spearman
 cor(house$TotRmsAbvGrd, house$SalePrice, method = c("pearson", "kendall", "spearman"))
 cor(house$GarageCars, house$SalePrice, method = c("pearson", "kendall", "spearman"))
 cor(house$GarageArea, house$SalePrice, method = c("pearson", "kendall", "spearman"))
-
 
 ```
 
@@ -190,4 +273,4 @@ mean(silkm[,3])
 
 ### 6. Todos los resultados deben ser reproducible por lo que debe fijar que los conjuntos de entrenamiento y prueba sean los mismos siempre que se ejecute el código.
 
-### 7. Seleccione una de las variables y haga un modelo univariado de regresión lineal para predecir el precio de las casas. Analice el m
+### 7. Seleccione una de las variables y haga un modelo univariado de regresión lineal para predecir el precio de las casas. Analice el modelo 
