@@ -11,56 +11,173 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## librerías
 ```{r}
+library(haven)
+library(rpart)
+library(stats)
 library(dplyr)
+library(cluster)
+library(rpart.plot)
+library(fpc)
 library(ggplot2)
-library(tidyr)
+library(tidyverse)
 
-train <- read.csv("train.csv")
-
-test <- read.csv("test.csv")
+#train <- read.csv("train.csv")
+#test <- read.csv("test.csv")
 
 ```
 
-## R Markdown
+### 1. Descargue los conjuntos de datos de la plataforma kaggle.
+librerías
+```{r}
+datos = read.csv("./train.csv")
+test<- read.csv("./test.csv", stringsAsFactors = FALSE)
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+#Columnas
+house <-select(datos, LotFrontage, LotArea, YearBuilt, YearRemodAdd, MasVnrArea, BsmtFinSF1,BsmtFinSF2,BsmtUnfSF,TotalBsmtSF,X1stFlrSF,X2ndFlrSF,LowQualFinSF,GrLivArea,TotRmsAbvGrd,Fireplaces,GarageYrBlt,GarageCars,GarageArea,WoodDeckSF,OpenPorchSF,EnclosedPorch,ScreenPorch,PoolArea,MoSold,YrSold,SalePrice)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+#Data
+house <- na.omit(house)
 
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+# Resumen 
+summary(house)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+### 2. Haga un análisis exploratorio extenso de los datos. Explique bien todos los hallazgos. No ponga solo gráficas y código. Debe llegar a conclusiones interesantes para poder predecir. Explique el preprocesamiento que necesitó hacer.
 
-## Analisis exploratorio
+Analisis exploratorio
 
 ---Exploración rápida de datos---
 train
 ```{r}
-summary(train)
+#summary(train)
 ```
 test
 ```{r}
-summary(test)
+#summary(test)
 
 ```
 
 ```{r}
 NombreDeLaVariables <- c("SalePrice", "MSSubClass", "MSZoning", "LotFrontage", "LotArea", "Street", "Alley", "LotShape", "LandContour", "Utilities", "LotConfig", "LandSlope", "Neighborhood", "Condition1", "Condition2", "BldgType", "HouseStyle", "OverallQual", "OverallCond", "YearBuilt", "YearBuilt", "RoofStyle", "RoofMatl", "Exterior1st", "Exterior2nd", "MasVnrType", "MasVnrArea","ExterQual","ExterCond","Foundation","BsmtQual","BsmtCond","BsmtExposure","BsmtFinType1","BsmtFinSF1","BsmtFinType2","BsmtFinSF2","BsmtUnfSF","TotalBsmtSF","Heating","HeatingQC","CentralAir","Electrical","1stFlrSF","2ndFlrSF","LowQualFinSF","GrLivArea","BsmtFullBath","BsmtHalfBath","FullBath","HalfBath","Bedroom","Kitchen","KitchenQual","TotRmsAbvGrd","Functional","Fireplaces","FireplaceQu","GarageType","GarageYrBlt","GarageFinish","GarageCars","GarageArea","GarageQual","GarageCond","PavedDrive","WoodDeckSF","OpenPorchSF","EnclosedPorch","3SsnPorch","ScreenPorch","PoolArea","PoolQC","Fence","MiscFeature","MiscVal","MoSold","YrSold","SaleType","SaleCondition")
-
 Cualitativa <- c("", "", "x", "", "", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "", "", "", "", "x", "x", "x", "x", "x", "", "x", "x", "x", "x", "x", "x", "x", "", "x", "", "", "", "x", "x", "x", "x", "", "", "", "", "", "", "f", "", "", "", "x", "", "x", "", "x", "x", "", "x", "", "", "x", "x", "x", "", "", "", "", "", "", "x", "x", "x", "", "", "", "x", "x")
 Cuantitativa <- c("x", "x", "", "x", "x", "", "", "", "", "", "", "", "", "", "", "", "", "x", "x", "x", "x", "", "", "", "", "", "x", "", "", "", "", "", "", "", "x", "", "x", "x", "x", "", "", "", "", "x", "x", "x", "x", "x", "x", "xf", "x", "x", "x", "", "x", "", "x", "", "", "x", "", "x", "x", "", "", "", "x", "x", "x", "x", "x", "x", "", "", "", "x", "x", "x", "", "")
-
 DataFrame.NombreDeLaVariables <- data.frame(NombreDeLaVariables, Cualitativa,Cuantitativa)
-
 print(DataFrame.NombreDeLaVariables)
+```
+
+
+### 3. Incluya un análisis de grupos en el análisis exploratorio. Explique las características de los grupos.
+```{r}
+# con k-medias
+cluster <- house
+km<-kmeans(house,3)
+house$grupo<-km$cluster
+plotcluster(cluster,km$cluster) # los cluster
+```
+
+```{r}
+#método de la silueta
+silkm<-silhouette(km$cluster,dist(house))
+mean(silkm[,3]) #Silueta 
+```
+
+```{r}
+g1<- house[house$grupo==1,]
+prop.table(table(g1$Species))*100
 
 ```
+
+```{r}
+g2<- house[house$grupo==2,]
+prop.table(table(g2$Species))*100
+```
+
+```{r}
+g3<- house[house$grupo==3,]
+prop.table(table(g3$Species))*100
+```
+
+```{r}
+summary(g1)
+```
+
+```{r}
+summary(g2)
+```
+
+```{r}
+summary(g3)
+```
+
+--- prueba 1 ---
+```{r}
+##Similitud en las variables independientes y los precios de venta:
+cor(house$YearBuilt, house$SalePrice, method = c("pearson", "kendall", "spearman"))
+cor(house$YearRemodAdd, house$SalePrice, method = c("pearson", "kendall", "spearman"))
+cor(house$TotalBsmtSF, house$SalePrice, method = c("pearson", "kendall", "spearman"))
+cor(house$X1stFlrSF, house$SalePrice, method = c("pearson", "kendall", "spearman"))
+cor(house$GrLivArea, house$SalePrice, method = c("pearson", "kendall", "spearman"))
+cor(house$TotRmsAbvGrd, house$SalePrice, method = c("pearson", "kendall", "spearman"))
+cor(house$GarageCars, house$SalePrice, method = c("pearson", "kendall", "spearman"))
+cor(house$GarageArea, house$SalePrice, method = c("pearson", "kendall", "spearman"))
+
+
+```
+
+```{r}
+#Columnas
+house <-select(datos,TotalBsmtSF,X1stFlrSF,GrLivArea,GarageCars,GarageArea,SalePrice)
+
+#limpiamos
+house <- na.omit(house)
+
+#k-medias
+cluster <- house
+km<-kmeans(house,3)
+house$grupo<-km$cluster
+plotcluster(cluster,km$cluster) #graficamos ubicacion de cluster
+```
+
+```{r}
+#Silueta
+silkm<-silhouette(km$cluster,dist(house))
+mean(silkm[,3])
+```
+
+--- prueba 2 ---
+```{r}
+cor(house$TotalBsmtSF, house$SalePrice, method = c("pearson", "kendall", "spearman"))
+cor(house$X1stFlrSF, house$SalePrice, method = c("pearson", "kendall", "spearman"))
+cor(house$GrLivArea, house$SalePrice, method = c("pearson", "kendall", "spearman"))
+cor(house$GarageCars, house$SalePrice, method = c("pearson", "kendall", "spearman"))
+cor(house$GarageArea, house$SalePrice, method = c("pearson", "kendall", "spearman"))
+```
+
+```{r}
+#Columnas
+house <-select(datos,TotalBsmtSF,X1stFlrSF,GrLivArea,GarageCars,GarageArea,SalePrice)
+
+#limpiamos
+house <- na.omit(house)
+
+#k-medias
+cluster <- house
+km<-kmeans(house,3)
+house$grupo<-km$cluster
+plotcluster(cluster,km$cluster) #Graficamos clusters
+```
+
+```{r}
+#silueta
+silkm<-silhouette(km$cluster,dist(house))
+mean(silkm[,3])
+```
+
+### 4. Divida el set de datos preprocesados en dos conjuntos: Entrenamiento y prueba. Describa el criterio que usó para crear los conjuntos: número de filas de cada uno, estratificado o no, balanceado o no, etc. Si le proveen un conjunto de datos de prueba y tiene suficientes datos, tómelo como de validación, pero haga sus propios conjuntos de prueba.
+
+### 5. Haga ingeniería de características, ¿qué variables cree que puedan ser mejores predictores para el precio de las casas? Explique en que basó la selección o no de las variables.
+
+### 6. Todos los resultados deben ser reproducible por lo que debe fijar que los conjuntos de entrenamiento y prueba sean los mismos siempre que se ejecute el código.
+
+### 7. Seleccione una de las variables y haga un modelo univariado de regresión lineal para predecir el precio de las casas. Analice el m
