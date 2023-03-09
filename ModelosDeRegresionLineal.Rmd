@@ -24,6 +24,7 @@ library(ggplot2)
 library(tidyverse)
 library(e1071)
 library(corrplot)
+library(dummy)
 
 #train <- read.csv("train.csv")
 #test <- read.csv("test.csv")
@@ -313,6 +314,7 @@ plot(datos$LotArea,datos$SalePrice)
 ```{r}
 porciento <- 70/100
 datos$clasificacion <- ifelse(datos$SalePrice <= 251000, "Economicas", ifelse(datos$SalePrice <= 538000, "Intermedias", ifelse(datos$SalePrice <= 755000, "Caras")))
+
 datos$y <- as.numeric(factor(datos$clasificacion))
 datosCC <- datos[,c(2,4,18,19,20,21,27,35,37,38,39,44,45,46,47,48,49,50,51,52,53,55,57,60,62,63,67,68,69,70,71,72,76,77,78,81,83)]
 datosCC <- datosCC[,colSums(is.na(datosCC))==0]
@@ -339,6 +341,23 @@ En general, hay poca correlación lineal entre las variables, aunque en algunas 
 
 ### 10. Si tiene multicolinealidad o sobreajuste, haga un modelo con las variables que sean mejores predictoras del precio de las casas. Determine la calidad del modelo realizando un análisis de los residuos. Muéstrelo gráficamente.
 
+```{r}
+plot(fitLM)
+```
+
+Residuals vs. fitted
+La gráfica se utiliza para detectar patrones no lineales en los residuos. Sin embargo, al observarla visualmente, no se puede identificar ningún patrón que sugiera la presencia de relaciones no lineales. Los residuos se distribuyen uniformemente en toda la gráfica.
+
+Normal Q-Q
+La gráfica se utiliza para verificar si los residuos tienen una distribución normal, donde se considera mejor aquellos con más puntos alineados cerca de la diagonal. En la gráfica específica que se ha generado, se observa que la mayoría de los puntos o cuantiles están cercanos o alineados con la diagonal, lo que indica que la distribución de los residuos es normal.
+
+Scale-Location
+la gráfica de residuos versus ajustes permite identificar la presencia de homocedasticidad o heterocedasticidad. En este caso, como la mayoría de los residuos se encuentran alrededor de cero, y no hay una tendencia clara en la dispersión de los residuos en función del ajuste, se puede concluir que no hay una violación importante de la suposición de homocedasticidad.En este caso, se observa que la mayoría de los datos están distribuidos en un rango aceptable entre 100,000 y 400,000, aunque hay algunos datos en el extremo derecho que se comportan de manera diferente. 
+
+Residuals vs Leverage
+es una herramienta importante en el análisis de regresión lineal, ya que permite identificar observaciones que pueden tener un impacto significativo en la línea de regresión. Si un punto está ubicado más allá de esta línea, se considera que tiene un alto leverage y puede tener un impacto significativo en la línea de regresión.En el caso específico del gráfico realizado, se identificaron dos puntos (1183 y 1299) que se encuentran más allá de la línea de Cook y que podrían tener un impacto significativo en la línea de regresión. Por lo tanto, se debe analizar la influencia de estos puntos en el modelo y considerar si deben ser eliminados o no. Es importante recordar que no siempre es necesario eliminar los puntos de alto leverage, ya que pueden ser puntos importantes en el conjunto de datos.
+
 ### 11. Utilice cada modelo con el conjunto de prueba y determine la eficiencia del algoritmo para predecir el precio de las casas. ¿Qué tan bien lo hizo?
+
 
 ### 12. Discuta sobre la efectividad de los modelos. ¿Cuál lo hizo mejor? ¿Cuál es el mejor modelo para predecir el precio de las casas? Haga los gráficos que crea que le pueden ayudar en la discusión.
