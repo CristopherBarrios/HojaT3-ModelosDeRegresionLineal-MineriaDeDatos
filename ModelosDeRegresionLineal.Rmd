@@ -382,6 +382,8 @@ es una herramienta importante en el análisis de regresión lineal, ya que permi
 ### 11. Utilice cada modelo con el conjunto de prueba y determine la eficiencia del algoritmo para predecir el precio de las casas. ¿Qué tan bien lo hizo?
 ```{r}
 
+Se puede concluir que el algoritmo si logra predecir el precio de las casas con un margen de error aceptable, la regresión es lineal, por lo que se puede notar que predijo la mayoría de los precios. 
+
 ```
 
 
