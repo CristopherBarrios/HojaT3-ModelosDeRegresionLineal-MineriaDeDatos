@@ -391,4 +391,4 @@ es una herramienta importante en el análisis de regresión lineal, ya que permi
 plot(train$SalePrice, col="pink")
 
 ```
-
+Vamos a volver a utilizar el resumen que se uso para el inciso 8, en este se puede encontrar el coeficiente de determinación (Multiple R-squared), el cual indica la proporción de varianza en la variable objetivo que es explicada por las variables independientes en el modelo. En este caso, el valor obtenido de 0.8 es considerado como un valor razonablemente bueno se puede concluir que el modelo tiene una efectividad aceptable, aunque se podría trabajar en la mejora de algunas variables independientes para aumentar la precisión del modelo.
