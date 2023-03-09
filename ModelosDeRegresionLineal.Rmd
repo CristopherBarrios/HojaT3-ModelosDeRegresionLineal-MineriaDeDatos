@@ -381,10 +381,28 @@ es una herramienta importante en el análisis de regresión lineal, ya que permi
 
 ### 11. Utilice cada modelo con el conjunto de prueba y determine la eficiencia del algoritmo para predecir el precio de las casas. ¿Qué tan bien lo hizo?
 ```{r}
-
-Se puede concluir que el algoritmo si logra predecir el precio de las casas con un margen de error aceptable, la regresión es lineal, por lo que se puede notar que predijo la mayoría de los precios. 
-
+prediction <- fitLM %>% predict(test)
+data.frame(RMSE = RMSE(prediction, test$SalePrice), R2 = R2(prediction, test$SalePrice))
+ 
+anova(fitLM) 
 ```
+
+```{r}
+ggplot(train, aes(x=GrLivArea, y=SalePrice)) + 
+  geom_point(color="purple") +
+  labs(x="Área habitable", y="Precio de venta", title="Relación entre Área habitable y Precio de venta")
+```
+En la gráfica anterior, se puede ver que hay una clara relación positiva entre la variable Área habitable y el Precio de venta, lo cual es esperado.
+
+```{r}
+ggplot(data.frame(predicted=prediction, actual=test$SalePrice, residuales=prediction-test$SalePrice), aes(x=predicted, y=residuales)) + 
+  geom_point(color="purple") +
+  labs(x="Valores predichos", y="Residuos", title="Residuos vs. Valores predichos") +
+  geom_hline(yintercept=0, color="black")
+```
+En la gráfica anterior, se puede ver que los residuos están centrados alrededor de 0, lo cual es indicativo de que el supuesto de se cumple. Sin embargo, se observa una cierta asimetría en los residuos, lo cual podría indicar que el supuesto de normalidad no se cumple completamente.
+
+El modelo de regresión lineal parece ser adecuado para predecir el precio de las casas, aunque hay algunas variables independientes que podrían mejorarse para aumentar la precisión del modelo. La visualización de los datos y los residuos es útil para entender mejor la relación entre las variables y verificar si se cumplen los supuestos del modelo.
 
 
 ### 12. Discuta sobre la efectividad de los modelos. ¿Cuál lo hizo mejor? ¿Cuál es el mejor modelo para predecir el precio de las casas? Haga los gráficos que crea que le pueden ayudar en la discusión.
