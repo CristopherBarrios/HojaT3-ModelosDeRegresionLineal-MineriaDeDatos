@@ -387,6 +387,10 @@ es una herramienta importante en el análisis de regresión lineal, ya que permi
 
 ### 12. Discuta sobre la efectividad de los modelos. ¿Cuál lo hizo mejor? ¿Cuál es el mejor modelo para predecir el precio de las casas? Haga los gráficos que crea que le pueden ayudar en la discusión.
 ```{r}
+plot(test$SalePrice, col="pink")
+```
+
+```{r}
 
 plot(train$SalePrice, col="pink")
 
