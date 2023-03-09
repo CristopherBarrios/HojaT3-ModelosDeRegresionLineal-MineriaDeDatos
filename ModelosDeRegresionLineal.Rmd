@@ -306,11 +306,31 @@ Nos basamos en las caracterísicas mas distintivas de las casas, y las que consi
 La ubicación y tamaño de la casa son una de las más importantes, así como la cantidad de habitacions y parqueos que tiene. Loas materiales de construcción nos permite deducir cuanto dinero se invirtó durante su construcción y el hecho de tener chimenea hace que aumenta el valor de un inmueble considerablemente
 
 ### 6. Todos los resultados deben ser reproducible por lo que debe fijar que los conjuntos de entrenamiento y prueba sean los mismos siempre que se ejecute el código.
-### 7. Seleccione una de las variables y haga un modelo univariado de regresión lineal para predecir el precio de las casas. Analice el modelo 
+```{r}
+set.seed(123) # Establecer semilla aleatoria
+indices_entrenamiento <- sample(1:nrow(datos), round(0.7*nrow(datos)), replace = FALSE)
+datos_entrenamiento <- datos[indices_entrenamiento, ]
+datos_prueba <- datos[-indices_entrenamiento, ]
 
+```
+se pueden establecer semillas aleatorias en el proceso de división del conjunto de datos en entrenamiento y prueba. De esta manera, se asegura que siempre se obtengan los mismos conjuntos de datos.
+
+### 7. Seleccione una de las variables y haga un modelo univariado de regresión lineal para predecir el precio de las casas. Analice el modelo 
+```{r}
+modelo_univariado <- lm(SalePrice ~ LotArea, data = datos_entrenamiento)
+summary(modelo_univariado)
+
+```
+El resultado del modelo muestra el coeficiente de la variable "LotArea" y el coeficiente de determinación (R²), que indica la proporción de la variación en la variable dependiente que se explica por la variable independiente en el modelo.
 ```{r}
 plot(datos$LotArea,datos$SalePrice)
 ```
+
+```{r}
+plot(modelo_univariado, which = c(1,2))
+
+```
+Si los residuos están distribuidos aleatoriamente alrededor de cero y no muestran patrones claros, se puede asumir que el modelo es adecuado.
 
 ### 8. Haga un modelo de regresión lineal con todas las variables numéricas para predecir el precio de las casas. Analice el modelo (resumen, residuos, resultados de la predicción). Muestre el modelo gráficamente.
 ```{r}
