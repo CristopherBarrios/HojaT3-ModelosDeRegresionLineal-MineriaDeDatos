@@ -269,6 +269,11 @@ plotcluster(cluster,km$cluster) #Graficamos clusters
 silkm<-silhouette(km$cluster,dist(house))
 mean(silkm[,3])
 ```
+En el análisis de grupos, se aplicó el algoritmo de K-Means a cada una de las variables que se habían analizado previamente. El objetivo era agrupar las casas según su similitud en cada una de esas variables. Además, se identificaron las variables que se consideraron importantes para determinar el precio de una casa y se calcularon medidas de tendencia central para cada una de ellas, como la media y la mediana.
+
+Por otro lado, se identificaron las variables que se consideraron relevantes para el precio de una casa, lo que permitió centrar el análisis en aquellas variables que podrían ser más influyentes en el precio de una casa. Se calcularon medidas de tendencia central para cada una de estas variables.
+
+La silueta no muestra mejoría ya que los clusters disminuyen su valor.
 
 ### 4. Divida el set de datos preprocesados en dos conjuntos: Entrenamiento y prueba. Describa el criterio que usó para crear los conjuntos: número de filas de cada uno, estratificado o no, balanceado o no, etc. Si le proveen un conjunto de datos de prueba y tiene suficientes datos, tómelo como de validación, pero haga sus propios conjuntos de prueba.
 
@@ -301,9 +306,6 @@ Nos basamos en las caracterísicas mas distintivas de las casas, y las que consi
 La ubicación y tamaño de la casa son una de las más importantes, así como la cantidad de habitacions y parqueos que tiene. Loas materiales de construcción nos permite deducir cuanto dinero se invirtó durante su construcción y el hecho de tener chimenea hace que aumenta el valor de un inmueble considerablemente
 
 ### 6. Todos los resultados deben ser reproducible por lo que debe fijar que los conjuntos de entrenamiento y prueba sean los mismos siempre que se ejecute el código.
-
-
-
 ### 7. Seleccione una de las variables y haga un modelo univariado de regresión lineal para predecir el precio de las casas. Analice el modelo 
 
 ```{r}
@@ -358,6 +360,9 @@ Residuals vs Leverage
 es una herramienta importante en el análisis de regresión lineal, ya que permite identificar observaciones que pueden tener un impacto significativo en la línea de regresión. Si un punto está ubicado más allá de esta línea, se considera que tiene un alto leverage y puede tener un impacto significativo en la línea de regresión.En el caso específico del gráfico realizado, se identificaron dos puntos (1183 y 1299) que se encuentran más allá de la línea de Cook y que podrían tener un impacto significativo en la línea de regresión. Por lo tanto, se debe analizar la influencia de estos puntos en el modelo y considerar si deben ser eliminados o no. Es importante recordar que no siempre es necesario eliminar los puntos de alto leverage, ya que pueden ser puntos importantes en el conjunto de datos.
 
 ### 11. Utilice cada modelo con el conjunto de prueba y determine la eficiencia del algoritmo para predecir el precio de las casas. ¿Qué tan bien lo hizo?
+```{r}
+
+```
 
 
 ### 12. Discuta sobre la efectividad de los modelos. ¿Cuál lo hizo mejor? ¿Cuál es el mejor modelo para predecir el precio de las casas? Haga los gráficos que crea que le pueden ayudar en la discusión.
